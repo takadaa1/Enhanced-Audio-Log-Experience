@@ -1,0 +1,12 @@
+\c proj
+\i /home/lion/Downloads/DDL.sql
+\i /home/lion/Downloads/DML.sql
+\dt
+SELECT * FROM administrator;
+SELECT * FROM assets;
+SELECT * FROM interview;
+\i /home/lion/Downloads/views.sql
+SELECT * FROM interview_view;
+SELECT * FROM admin_info_view;
+\s log
+\q
