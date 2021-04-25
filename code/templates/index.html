@@ -8,16 +8,18 @@
 
 	<body>
 		<h2>Test</h2>
-		<table>
-			{% for row in titles %}
-			<tr>
-				{{row[0]}}
-				<br>
-				<div class="container">
-					<img src={{row[1]}} alt="Thumbnail" class="cont">
-				</div>
-			</tr>
-			{% endfor %}
-		</table>
-	</body>
+	    <div class="table">
+        <ul>
+          {% for row in titles %}
+          <li>
+            <a href="{{ url_for('interview', interviewid=row[0]) }}">{{row[1]}}</a>
+			    	<br>
+				    <div class="container">
+              <img src={{row[2]}} alt="Thumbnail" class="cont">
+				    </div>
+          </li>
+			    {% endfor %}
+        </ul>
+      </div>
+  </body>
 </html>

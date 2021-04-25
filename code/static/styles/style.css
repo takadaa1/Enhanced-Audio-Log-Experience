@@ -2,6 +2,30 @@ img.cont {
 	width: 100%;
 }
 .container {
-	width: 33%;
+	width: 100%;
+  height: 80%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 	overflow: hidden;
 }
+
+.table {
+  display: inline;
+  font-size: 30px;
+  width: 450px;
+}
+
+.table ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.table ul li {
+  border-style: outset;
+  display: inline-block;
+  width: 300px;
+  height: 300px;
+}
+

@@ -6,8 +6,8 @@ from config import config
 from flask import Flask, render_template, request
  
 # Database creds
-user = 'lion'
-passw = 'lion'
+user = 'postgres'
+passw = 'tcnjslap2'
 db = 'proj'
 
 
@@ -20,11 +20,22 @@ app = Flask(__name__)
 def index():
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT title, thumbnail FROM interview order by title""")
+    curr.execute("""SELECT id ,title, thumbnail FROM interview order by title; """)
     titles = curr.fetchall()
     curr.close()
 
     return render_template('index.html', titles=titles)
+
+# individual interview pages
+@app.route('/interview/<interviewid>')
+def interview(interviewid):
+    conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
+    curr = conn.cursor()
+    curr.execute("""SELECT id ,title FROM interview WHERE id = (%s); """, interviewid)
+    title = curr.fetchall()
+    curr.close()
+
+    return render_template('interview.html', title=title)
 
 # serve form web page
 @app.route("/")
