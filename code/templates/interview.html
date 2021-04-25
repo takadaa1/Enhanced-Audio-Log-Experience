@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Enhanced Audio Log Experience</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
-	</head>
+    <head>
+        <title>Enhanced Audio Log Experience</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+    </head>
 
-	<body>
-		<h2>Test Interview</h2>
-    {% for row in title %}
-      {{row[1]}}
-    {% endfor%}
-  </body>
+    <body>
+        <h2>Test Interview</h2>
+        {% for row in title %}
+        {{row[1]}}
+        {% endfor%}
+    </body>
 </html>

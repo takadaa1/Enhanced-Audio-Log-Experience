@@ -1,19 +1,19 @@
 img.cont {
-	width: 100%;
+  width: 100%;
 }
-.container {
-	width: 100%;
+.container { 
+  width: 100%;
   height: 80%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .table {
   display: inline;
-  font-size: 30px;
-  width: 450px;
+  font-size: 20px;
+  text-align: center;
 }
 
 .table ul {
@@ -24,7 +24,7 @@ img.cont {
 
 .table ul li {
   border-style: outset;
-  display: inline-block;
+  display: inline-grid;
   width: 300px;
   height: 300px;
 }

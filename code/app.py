@@ -6,8 +6,8 @@ from config import config
 from flask import Flask, render_template, request
  
 # Database creds
-user = 'postgres'
-passw = 'tcnjslap2'
+user = 'lion'
+passw = 'lion'
 db = 'proj'
 
 
