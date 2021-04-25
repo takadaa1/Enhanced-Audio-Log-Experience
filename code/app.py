@@ -20,7 +20,7 @@ app = Flask(__name__)
 def index():
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT title FROM interview order by title""");
+    curr.execute("""SELECT title, thumbnail FROM interview order by title""")
     titles = curr.fetchall()
     curr.close()
 
