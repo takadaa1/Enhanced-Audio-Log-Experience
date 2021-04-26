@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Enhanced Audio Log Experience</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
-    </head>
+	<head>
+		<title>Enhanced Audio Log Experience</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+	</head>
 
-    <body>
-        <h2>Test Interview</h2>
-        {% for row in title %}
-        {{row[1]}}
-        {% endfor%}
-    </body>
+	<body>
+		<h2>Test Interview</h2>
+		{% for row in title %}
+		{{row[1]}}
+		{% endfor%}
+
+		{% for row in title %}
+		{{row[2]}}
+		{% endfor %}<br>
+
+		{% for row in title %}
+		<audio controls>
+			<source src="{{row[3]}}" type="audio/ogg">
+		Your browser does not support the audio element.
+		</audio>
+		{% endfor %}
+
+		<h3>Stuff</h3>
+		{% for row in assets %}
+		{{row[1]}}
+		<br>
+		{% endfor %}
+
+		{% for row in assets %}
+		<a href="{{row[2]}}">{{row[2]}}</a>
+		<br>
+		{% endfor %}
+
+		{% for row in assets %}	
+		<img src={{row[3]}} alt="Asset photo" width="300" height="250">
+		<br>
+		{% endfor %}
+
+		{% for row in assets %}
+		{{row[4]}}
+		<br>
+		{% endfor %}
+
+
+
+	</body>
 </html>

@@ -8,7 +8,7 @@ from flask import Flask, render_template, request
 # Database creds
 user = 'lion'
 passw = 'lion'
-db = 'proj'
+db = 'projtest'
 
 
 # app.py
@@ -20,7 +20,7 @@ app = Flask(__name__)
 def index():
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT id ,title, thumbnail FROM interview order by title; """)
+    curr.execute("""SELECT * FROM interview order by title; """)
     titles = curr.fetchall()
     curr.close()
 
@@ -31,23 +31,15 @@ def index():
 def interview(interviewid):
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT id ,title FROM interview WHERE id = (%s); """, interviewid)
+    curr.execute("""SELECT id ,title, date FROM interview WHERE id = (%s); """, interviewid)
     title = curr.fetchall()
+
+    curr.execute("""SELECT * FROM assets WHERE fid = (%s); """, interviewid)
+    assets = curr.fetchall()
     curr.close()
 
-    return render_template('interview.html', title=title)
+    return render_template('interview.html', title=title, assets=assets)
 
-# serve form web page
-@app.route("/")
-def form():
-    return render_template('my-form.html')
-
-# handle form data
-@app.route('/form-handler', methods=['POST'])
-def handle_data():
-    rows = connect(request.form['query'])
-
-    return render_template('my-result.html', rows=rows)
 
 if __name__ == '__main__':
     app.run(debug = True)
