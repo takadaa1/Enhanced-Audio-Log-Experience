@@ -26,6 +26,11 @@ def index():
 
     return render_template('index.html', titles=titles)
 
+# about page
+@app.route('/about')
+def about():
+    return render_template('index.html')
+
 # individual interview pages
 @app.route('/interview/<interviewid>')
 def interview(interviewid):
