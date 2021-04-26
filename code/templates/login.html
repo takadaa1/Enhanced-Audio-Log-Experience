@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>Login|Enhanced Audio Log Experience</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+	</head>
+
+	<body>
+		<header>
+			<div class = "navigation-bar">
+				<div id = "navigation-container">
+					<a href=" {{ url_for('index') }} "><img src="{{ url_for('static', filename='logo.png') }}"></a>
+				</div>
+				<a href=" {{ url_for('index') }} ">Home</a>
+				<a href=" {{ url_for('about') }} ">About</a>
+				<a href=" {{ url_for('login') }} ">Login</a>
+			</div>
+		</header>
+		<br>
+		<div class="container">
+			<h1>Welcome to EALE</h1>
+			<br>
+			<form action="" method="post">
+				<input type="text" placeholder="Username" name="username" value="{{
+					     request.form.username }}">
+				<input type="password" placeholder="Password" name="password" value="{{
+					     request.form.password }}">
+				<input class="btn btn-default" type="submit" value="Login">
+			</form>
+			{% if error %}
+			<p class="error"><strong>Error:</strong> {{ error }}
+			{% endif %}
+		</div>
+
+		<!-- Information shown at bottom -->
+		<div class = "foot">
+			<h1>Enhanced Audio Log Experience</h1>
+			<p>
+			By Akira Takada and Jason Chen @
+			<a href="https://computerscience.tcnj.edu" target="_blank" rel="noopener">The College of New Jersey (TCNJ)</a>
+			</p>
+		</div>
+
+	</body>
+</html>
+

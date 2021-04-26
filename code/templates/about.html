@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<!-- Maintained by: Jason Chen -->
 <html lang="en">
     <head>
         <title>Enhanced Audio Log Experience</title>
@@ -8,8 +6,7 @@
     </head>
 
     <body>
-
-        <!-- Navigation bar for user -->
+	<!-- Navigation bar for user -->
         <header>
             <div class = "navigation-bar">
                 <div id = "navigation-container">
@@ -17,31 +14,20 @@
                 </div>
                     <a href=" {{ url_for('index') }} ">Home</a>
                     <a href=" {{ url_for('about') }} ">About</a>
-		    <a href=" {{ url_for('login') }} ">Login</a>
+                    <a href=" {{ url_for('login') }} ">Login</a>
             </div>
         </header>
         <br>
 
-        <h2>Test Interview</h2>
-        {% for row in title %}
-        <p>This is the interview for:</p>{{row[1]}}<br>
-        <p>Date of interview:</p>{{row[2]}}<br>
-        <audio id="sound" controls>
-            <source src="{{row[3]}}" type="audio/ogg">
-            Your browser does not support the audio element.
-        </audio>
-        {% endfor%}
+	<h1><u>About Us</u><h1>
+			<p>Enhanced Audio Log Experience aims to enrich the user experience when using the audio library from Trentoniana by providing real-time delivery of references such as:</p>
+			<ul>
+				<li>Images</li>
+				<li>Links to referenced subjects</li>
+				<li>Text Description</li>
+			</ul>
 
-        <h3>Stuff</h3>
-        {% for row in assets %}
-        {{row[1]}}<br>
-        <a href="{{row[2]}}">{{row[2]}}</a><br>
-        <img id="image" src={{row[3]}} alt="Asset photo" width="300" height="250" style=display:none;"/><br>
-        <button onclick="getPic()" type="button">Click for pic</button>
-        {{row[4]}}<br>
-        {% endfor %}
-
-        <!-- Information shown at bottom -->
+	<!-- Information shown at bottom -->
         <div class = "foot">
             <h1>Enhanced Audio Log Experience</h1>
             <p>
@@ -51,10 +37,4 @@
         </div>
 
     </body>
-
-    <script>
-        function getPic() {
-            document.getElementById('image').style.display='block';
-        }
-    </script>
 </html>
