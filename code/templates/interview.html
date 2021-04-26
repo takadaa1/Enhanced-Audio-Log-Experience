@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Enhanced Audio Log Experience</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
-	</head>
+    <head>
+        <title>Enhanced Audio Log Experience</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+    </head>
 
-	<body>
-		<h2>Test Interview</h2>
-		{% for row in title %}
-		{{row[1]}}
-		{% endfor%}
+    <body>
 
-		{% for row in title %}
-		{{row[2]}}
-		{% endfor %}<br>
+        <!-- Navigation bar for user -->
+        <header>
+            <div class = "navigation-bar">
+                <div id = "navigation-container">
+                    <a href=" {{ url_for('index') }} "><img src="{{ url_for('static', filename='logo.png') }}"></a>
+                </div>
+                    <a href=" {{ url_for('index') }} ">Home</a>
+                    <a href=" {{ url_for('about') }} ">About</a>
+            </div>
+        </header>
+        <br>
 
-		{% for row in title %}
-		<audio controls>
-			<source src="{{row[3]}}" type="audio/ogg">
-		Your browser does not support the audio element.
-		</audio>
-		{% endfor %}
+        <h2>Test Interview</h2>
+        {% for row in title %}
+        <p>This is the interview for:</p>{{row[1]}}<br>
+        <p>Date of interview:</p>{{row[2]}}<br>
+        <audio controls>
+            <source src="{{row[3]}}" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+        {% endfor%}
 
-		<h3>Stuff</h3>
-		{% for row in assets %}
-		{{row[1]}}
-		<br>
-		{% endfor %}
+        <h3>Stuff</h3>
+        {% for row in assets %}
+        {{row[1]}}<br>
+        <a href="{{row[2]}}">{{row[2]}}</a><br>
+        <img id="image" src={{row[3]}} alt="Asset photo" width="300" height="250" style=display:none;"/><br>
+        <button onclick="getPic()" type="button">Click for pic</button>
+        {{row[4]}}<br>
+        {% endfor %}
 
-		{% for row in assets %}
-		<a href="{{row[2]}}">{{row[2]}}</a>
-		<br>
-		{% endfor %}
+        <!-- Information shown at bottom -->
+        <div class = "foot">
+            <h1>Enhanced Audio Log Experience</h1>
+            <p>
+            By Akira Takada and Jason Chen @
+            <a href="https://computerscience.tcnj.edu" target="_blank" rel="noopener">The College of New Jersey (TCNJ)</a>
+            </p>
+        </div>
 
-		{% for row in assets %}	
-		<img src={{row[3]}} alt="Asset photo" width="300" height="250">
-		<br>
-		{% endfor %}
+    </body>
 
-		{% for row in assets %}
-		{{row[4]}}
-		<br>
-		{% endfor %}
-
-
-
-	</body>
+    <script>
+        function getPic() {
+            document.getElementById('image').style.display='block';
+        }
+function getLink() {
+}
+    </script>
 </html>
