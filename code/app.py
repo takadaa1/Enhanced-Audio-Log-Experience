@@ -6,9 +6,9 @@ from config import config
 from flask import Flask, render_template, request
  
 # Database creds
-user = 'postgres'
-passw = 'tcnjslap2'
-db = 'proj'
+user = 'lion'
+passw = 'lion'
+db = 'projtest'
 
 
 # app.py
@@ -31,7 +31,7 @@ def index():
 def interview(interviewid):
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT id ,title, date FROM interview WHERE id = (%s); """, interviewid)
+    curr.execute("""SELECT * FROM interview WHERE id = (%s); """, interviewid)
     title = curr.fetchall()
 
     curr.execute("""SELECT * FROM assets WHERE fid = (%s); """, interviewid)

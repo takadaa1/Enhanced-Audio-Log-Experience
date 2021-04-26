@@ -9,42 +9,30 @@
 	<body>
 		<h2>Test Interview</h2>
 		{% for row in title %}
-		{{row[1]}}
-		{% endfor%}
-
-		{% for row in title %}
-		{{row[2]}}
-		{% endfor %}<br>
-
-		{% for row in title %}
+		<p>This is the interview for:</p>{{row[1]}}<br>
+		<p>Date of interview:</p>{{row[2]}}<br>
 		<audio controls>
 			<source src="{{row[3]}}" type="audio/ogg">
 		Your browser does not support the audio element.
 		</audio>
-		{% endfor %}
+		{% endfor%}
 
 		<h3>Stuff</h3>
 		{% for row in assets %}
-		{{row[1]}}
-		<br>
+		{{row[1]}}<br>
+		<a href="{{row[2]}}">{{row[2]}}</a><br>
+		<img id="image" src={{row[3]}} alt="Asset photo" width="300" height="250" style=display:none;"/><br>
+		<button onclick="getPic()" type="button">Click for pic</button>
+		{{row[4]}}<br>
 		{% endfor %}
-
-		{% for row in assets %}
-		<a href="{{row[2]}}">{{row[2]}}</a>
-		<br>
-		{% endfor %}
-
-		{% for row in assets %}	
-		<img src={{row[3]}} alt="Asset photo" width="300" height="250">
-		<br>
-		{% endfor %}
-
-		{% for row in assets %}
-		{{row[4]}}
-		<br>
-		{% endfor %}
-
-
 
 	</body>
+
+	<script>
+		function getPic() {
+			document.getElementById('image').style.display='block';
+		}
+		function getLink() {
+		}
+	</script>
 </html>
