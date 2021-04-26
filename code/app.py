@@ -6,9 +6,9 @@ from config import config
 from flask import Flask, render_template, request
  
 # Database creds
-user = 'lion'
-passw = 'lion'
-db = 'projtest'
+user = 'postgres'
+passw = 'tcnjslap2'
+db = 'proj'
 
 
 # app.py
@@ -20,7 +20,7 @@ app = Flask(__name__)
 def index():
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT * FROM interview order by title; """)
+    curr.execute("""SELECT id, title, thumbnail FROM interview order by title; """)
     titles = curr.fetchall()
     curr.close()
 
