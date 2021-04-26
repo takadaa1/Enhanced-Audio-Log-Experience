@@ -19,25 +19,20 @@
             </div>
         </header>
         <br>
-
-        <h2>Test Interview</h2>
-        {% for row in title %}
-        <p>This is the interview for:</p>{{row[1]}}<br>
-        <p>Date of interview:</p>{{row[2]}}<br>
-        <audio controls>
-            <source src="{{row[3]}}" type="audio/ogg">
-            Your browser does not support the audio element.
-        </audio>
-        {% endfor%}
-
-        <h3>Stuff</h3>
-        {% for row in assets %}
-        {{row[1]}}<br>
-        <a href="{{row[2]}}">{{row[2]}}</a><br>
-        <img id="image" src={{row[3]}} alt="Asset photo" width="300" height="250" style=display:none;"/><br>
-        <button onclick="getPic()" type="button">Click for pic</button>
-        {{row[4]}}<br>
-        {% endfor %}
+        <div class = "interview-container">
+            <h2>Audio Interview: {{ title[0][1] }}</h2>
+            <div id = "audio-container">
+                <audio controls id="audio"
+                    preload="auto"
+                    src="{{ title[0][3] }}"
+                    type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <p>Realtime Assets:</p>
+            <div id = "assets-container">
+            </div>
+        </div>
 
         <!-- Information shown at bottom -->
         <div class = "foot">
@@ -49,12 +44,56 @@
         </div>
 
     </body>
-
+    <!-- Javascript managed by: Akira Takada -->
     <script>
-        function getPic() {
-            document.getElementById('image').style.display='block';
-        }
-function getLink() {
-}
+            audio = document.getElementById("audio");
+            asset_cont = document.getElementById("assets-container");
+            var shown = false;
+            var shown_id = -1;
+            audio.ontimeupdate = function() {timestamp()};
+
+            function timestamp() {
+                var timestamps = JSON.parse('{{ assets|tojson }}');
+                for (var i = 0; i < timestamps.length; i++) {
+                    var times = timestamps[i][1].split(":");
+                    var time = (parseInt(times[0]) * 3600) + (parseInt(times[1]) * 60) + (parseInt(times[2]));
+                    if (Math.round(audio.currentTime) >= time && Math.round(audio.currentTime) < (time + 3)) {
+                        if(shown == false) {
+                            shown = true;
+                            shown_id = i;
+                            var t = document.createElement("p");
+                            t.innerHTML = timestamps[i][1];
+
+                            var link = document.createElement("a");
+                            link.setAttribute("href", timestamps[i][2]);
+                            link.setAttribute("target", "_blank");
+                            link.setAttribute("target", "noopener");
+                            link.innerHTML = "Wiki Page" + "<br>";  
+
+                            var img = document.createElement("img");
+                            img.setAttribute("src", timestamps[i][3]);
+
+                            var text = document.createElement("p");
+                            text.innerHTML = timestamps[i][4];
+
+                            asset_cont.appendChild(t);
+                            asset_cont.appendChild(link);
+                            asset_cont.appendChild(img);
+                            asset_cont.appendChild(text);
+                        }
+                        else {
+                            times = timestamps[shown_id][1].split(":");
+                            time = (parseInt(times[0]) * 3600) + (parseInt(times[1]) * 60) + (parseInt(times[2]));
+                            if(Math.round(audio.currentTime) < time || Math.round(audio.currentTime) >= (time + 3)) {
+                                shown = false;
+                                while(asset_cont.hasChildNodes){
+                                    asset_cont.removeChild(asset_cont.lastChild);
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
     </script>
+
 </html>
