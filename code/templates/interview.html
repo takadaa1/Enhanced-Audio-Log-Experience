@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Maintained by: Jason Chen -->
 <html lang="en">
     <head>
         <title>Enhanced Audio Log Experience</title>
@@ -16,9 +17,11 @@
                 </div>
                     <a href=" {{ url_for('index') }} ">Home</a>
                     <a href=" {{ url_for('about') }} ">About</a>
+		    <a href=" {{ url_for('login') }} ">Login</a>
             </div>
         </header>
         <br>
+<<<<<<< HEAD
         <div class = "interview-container">
             <h2>Audio Interview: {{ title[0][1] }}</h2>
             <div id = "audio-container">
@@ -33,6 +36,27 @@
             <div id = "assets-container">
             </div>
         </div>
+=======
+
+        <h2>Test Interview</h2>
+        {% for row in title %}
+        <p>This is the interview for:</p>{{row[1]}}<br>
+        <p>Date of interview:</p>{{row[2]}}<br>
+        <audio id="sound" controls>
+            <source src="{{row[3]}}" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+        {% endfor%}
+
+        <h3>Stuff</h3>
+        {% for row in assets %}
+        {{row[1]}}<br>
+        <a href="{{row[2]}}">{{row[2]}}</a><br>
+        <img id="image" src={{row[3]}} alt="Asset photo" width="300" height="250" style=display:none;"/><br>
+        <button onclick="getPic()" type="button">Click for pic</button>
+        {{row[4]}}<br>
+        {% endfor %}
+>>>>>>> ff420a78dc3b7ad0aa39cc67fa8e71e8704d221e
 
         <!-- Information shown at bottom -->
         <div class = "foot">
@@ -46,6 +70,7 @@
     </body>
     <!-- Javascript managed by: Akira Takada -->
     <script>
+<<<<<<< HEAD
             audio = document.getElementById("audio");
             asset_cont = document.getElementById("assets-container");
             var shown = false;
@@ -94,6 +119,11 @@
                     }
                 } 
             }
+=======
+        function getPic() {
+            document.getElementById('image').style.display='block';
+        }
+>>>>>>> ff420a78dc3b7ad0aa39cc67fa8e71e8704d221e
     </script>
 
 </html>
