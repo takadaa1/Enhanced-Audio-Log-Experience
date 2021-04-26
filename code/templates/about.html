@@ -6,35 +6,39 @@
     </head>
 
     <body>
-	<!-- Navigation bar for user -->
+        <!-- Navigation bar for user -->
         <header>
             <div class = "navigation-bar">
                 <div id = "navigation-container">
                     <a href=" {{ url_for('index') }} "><img src="{{ url_for('static', filename='logo.png') }}"></a>
                 </div>
-                    <a href=" {{ url_for('index') }} ">Home</a>
-                    <a href=" {{ url_for('about') }} ">About</a>
-                    <a href=" {{ url_for('login') }} ">Login</a>
+                <a href=" {{ url_for('index') }} ">Home</a>
+                <a href=" {{ url_for('about') }} ">About</a>
+                <a href=" {{ url_for('login') }} ">Login</a>
             </div>
         </header>
         <br>
-
-	<h1><u>About Us</u><h1>
-			<p>Enhanced Audio Log Experience aims to enrich the user experience when using the audio library from Trentoniana by providing real-time delivery of references such as:</p>
-			<ul>
-				<li>Images</li>
-				<li>Links to referenced subjects</li>
-				<li>Text Description</li>
-			</ul>
-
-	<!-- Information shown at bottom -->
-        <div class = "foot">
-            <h1>Enhanced Audio Log Experience</h1>
-            <p>
-            By Akira Takada and Jason Chen @
-            <a href="https://computerscience.tcnj.edu" target="_blank" rel="noopener">The College of New Jersey (TCNJ)</a>
-            </p>
+        
+        <div class = "about-main">
+            <h1><u>About Us</u></h1>
+                <div class = "about-container">
+                    <p>Enhanced Audio Log Experience aims to enrich the user experience when using the audio library from Trentoniana by providing real-time delivery of references such as:</p>
+                    <ul>
+                        <li>Images</li>
+                        <li>Links to referenced subjects</li>
+                        <li>Text Description</li>
+                    </ul>
+                </div>
         </div>
+
+                <!-- Information shown at bottom -->
+                <div class = "foot">
+                    <h1>Enhanced Audio Log Experience</h1>
+                    <p>
+                    By Akira Takada and Jason Chen @
+                    <a href="https://computerscience.tcnj.edu" target="_blank" rel="noopener">The College of New Jersey (TCNJ)</a>
+                    </p>
+                </div>
 
     </body>
 </html>

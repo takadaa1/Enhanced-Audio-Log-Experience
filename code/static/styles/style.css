@@ -80,3 +80,49 @@ body {
   box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: #F0F0F0;
 }
+
+.interview-container {
+  padding: 50px;
+  text-align: center;
+}
+
+.interview-container > p {
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+#audio-container {
+
+}
+
+#assets-container {
+  border-style: double;
+}
+
+#assets-container > a {
+  font-size: 30px;
+}
+
+#assets-container img {
+  width: auto;
+  height: 400px;
+}
+
+#assets-container > p {
+  font-size: 20px;
+}
+
+.about-main {
+  padding: 50px;
+  border-style: double;
+}
+
+.about-container {
+  font-size: 25px;
+}
+
+.login-container {
+  padding: 50px;
+  text-align: center;
+  border-style: double;
+}

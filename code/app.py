@@ -6,9 +6,9 @@ from config import config
 from flask import Flask, render_template, request, redirect, url_for
  
 # Database creds
-user = 'lion'
-passw = 'lion'
-db = 'projtest'
+user = 'postgres'
+passw = 'tcnjslap2'
+db = 'proj'
 
 
 # app.py
