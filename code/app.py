@@ -4,17 +4,19 @@
 import psycopg2
 from config import config
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask_bcrypt import Bcrypt
  
 # Database creds
 user = 'lion'
 passw = 'lion'
-db = 'projtest'
+db = 'proj2'
 
 
 # app.py
 
 app = Flask(__name__)
 app.secret_key = 'csc315'
+bcrypt = Bcrypt(app)
 
 # main index page
 @app.route('/')
@@ -56,11 +58,11 @@ def login():
         conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
         curr = conn.cursor()
         #curr.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password,))
-        curr.execute('SELECT * FROM users LEFT JOIN administrator ON users.userid=administrator.userid WHERE username = %s AND password = %s', (username, password,))
+        curr.execute('SELECT * FROM users LEFT JOIN administrator ON users.userid=administrator.userid WHERE username = %s', (username,))
         account = curr.fetchone()
         curr.close()
 
-        if account:
+        if account and bcrypt.check_password_hash(account[2], password):
             session['loggedin'] = True
             session['username'] = account[1]
             session['userid'] = account[0]
@@ -83,6 +85,7 @@ def register():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
+        pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
         conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
         curr = conn.cursor()
         curr.execute('SELECT * FROM users WHERE username = %s', (username,))
@@ -94,7 +97,7 @@ def register():
         elif not username or not password:
             error = 'Information missing in fields, please try again'
         else:
-            curr.execute('INSERT INTO users (username, password) VALUES(%s, %s)', (username, password,))
+            curr.execute('INSERT INTO users (username, password) VALUES(%s, %s)', (username, pw_hash,))
             conn.commit()
             return redirect(url_for('login'))
 
