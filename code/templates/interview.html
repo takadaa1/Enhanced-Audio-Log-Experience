@@ -27,6 +27,7 @@
         <br>
         <div class = "interview-container">
             <h2>Audio Interview: {{ title[0][1] }}</h2>
+            <h3>Full List of Assets: <a href=" {{ url_for('assets', interviewid=title[0][0]) }} ", target="_blank", rel="noopener">Assets</a></h3>
             <div id = "audio-container">
                 <audio controls id="audio"
                     preload="auto"

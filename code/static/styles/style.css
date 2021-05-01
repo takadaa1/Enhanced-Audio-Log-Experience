@@ -127,3 +127,17 @@ body {
   text-align: center;
   border-style: double;
 }
+
+.interview-assets-container {
+  padding: 50px;
+}
+
+.interview-assets-container td {
+  border-style: double;
+}
+
+.assets-image-container img {
+  width: auto;
+  height: 200px;
+}
+

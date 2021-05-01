@@ -7,8 +7,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
  
 # Database creds
-user = 'lion'
-passw = 'lion'
+user = 'postgres'
+passw = 'tcnjslap2'
 db = 'proj2'
 
 
@@ -47,6 +47,21 @@ def interview(interviewid):
     curr.close()
 
     return render_template('interview.html', title=title, assets=assets)
+
+# individual interview assets
+@app.route('/interview/<interviewid>/assets')
+def assets(interviewid):
+    conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
+    curr = conn.cursor()
+    curr.execute("""SELECT * FROM interview WHERE id = (%s); """, interviewid)
+    title = curr.fetchall()
+
+    curr.execute("""SELECT * FROM assets WHERE fid = (%s) order by timestamp; """, interviewid)
+    assets = curr.fetchall()
+    curr.close()
+
+    return render_template('assets.html', title=title, assets=assets)
+
 
 #login
 @app.route('/login', methods=['GET', 'POST'])
