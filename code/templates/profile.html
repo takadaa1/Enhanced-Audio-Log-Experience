@@ -1,0 +1,50 @@
+<html>
+        <head>
+                <title>Login|Enhanced Audio Log Experience</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+        </head>
+
+        <body>
+                <header>
+                        <div class = "navigation-bar">
+                                <div id = "navigation-container">
+                                        <a href=" {{ url_for('index') }} "><img src="{{ url_for('static', filename='logo.png') }}"></a>
+                                </div>
+                                <a href="{{ url_for('index') }}">Home</a>
+				<a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('profile') }}">Profile</a>
+		{% if session['loggedin'] %}
+                <a href="{{ url_for('logout') }} ">Logout</a>
+		{% endif %}
+                        </div>
+                </header>
+                <br>
+                <div class="login-container">
+			<h1>Account details for {{ account[1] }}:</h1>
+			<table>
+				<tr>
+					<td>Username:</td>
+					<td>{{ account[1] }}</td>
+					<br><tr>{% if session['loggedin'] %}
+						{{ session['username'] }}
+						{% endif %} </td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td>{{ account[2] }}</td>
+				</tr>
+			</table>
+
+		<!-- Information shown at bottom -->
+                <div class = "foot">
+                        <h1>Enhanced Audio Log Experience</h1>
+                        <p>
+                        By Akira Takada and Jason Chen @
+                        <a href="https://computerscience.tcnj.edu" target="_blank" rel="noopener">The College of New Jersey (TCNJ)</a>
+                        </p>
+                </div>
+
+        </body>
+</html>
