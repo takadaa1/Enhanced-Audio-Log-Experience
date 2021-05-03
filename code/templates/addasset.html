@@ -1,0 +1,59 @@
+<!-- Maintained by: Jason Chen -->
+<html lang="en">
+    <head>
+        <title>Enhanced Audio Log Experience</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+    </head>
+
+    <body>
+
+        <!-- Navigation bar for user-->
+        <header>
+            <div class = "navigation-bar">
+                <div id = "navigation-container">
+                    <a href=" {{ url_for('index') }} "><img src="{{ url_for('static', filename='logo.png') }}" ></a>
+                </div>
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('profile') }}">Profile</a>
+                {% if session['loggedin'] %}
+                <a href="{{ url_for('logout') }} ">Logout</a>
+                {% endif %}
+            </div>
+        </header>
+        <br>
+
+        <div class="add-container">
+            <h1>Add an interview</h1>
+            {% if alert %}
+            <p class="error"><strong>Error:</strong> {{ alert }}
+            {% endif %}
+            <form action="" method="post">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" value="{{ request.form.title }}"><br>
+                <label for="title">Date(YYYY-MM-DD):</label><br>
+                <input type="text" id="date" name="date" value="{{ request.form.date }}"><br>
+                <label for="title">Audio(.ogg file):</label><br>
+                <input type="text" id="audio" name="audio" value="{{ request.form.audio }}"><br>
+                <label for="title">Thumbnail(image source url):</label><br>
+                <input type="text" id="thumbnail" name="thumbnail" value="{{ request.form.thumbnail }}"><br>
+                <label for="title">Script(url):</label><br>
+                <input type="text" id="script" name="script" value="{{ request.form.script }}"><br>
+                <button class="btn btn-default" type="submit" name="addbtn">Add information</button>
+
+            </form>
+        </div>
+
+
+        <!-- Information shown at the bottom -->
+        <div class = "foot">
+            <h1>Enhanced Audio Log Experience</h1>
+            <p>
+            By Akira Takada and Jason Chen @
+            <a href="https://computerscience.tcnj.edu" target="_blank" rel="noopener">The College of New Jersey (TCNJ)</a>
+            </p>
+        </div>
+    </body>
+</html>

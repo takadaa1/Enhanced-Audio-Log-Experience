@@ -34,6 +34,7 @@
                 <form action="/delete-handler" method="POST">
                     <button name="del" type="submit" onclick="return confirm('Are you sure?')" value="{{ title[0][0] }}">Delete</button>
                 </form>
+                <a href="{{ url_for('addasset') }} ">Add Assets</a>
             {% endif %}
             <div id = "audio-container">
                 <audio controls id="audio"
