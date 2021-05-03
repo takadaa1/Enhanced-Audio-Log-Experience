@@ -7,8 +7,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
  
 # Database creds
-user = 'postgres'
-passw = 'tcnjslap2'
+user = 'lion'
+passw = 'lion'
 db = 'proj2'
 
 
@@ -188,32 +188,29 @@ def add():
 
     return render_template('add.html', alert=alert)
 
-@app.route('/addasset', methods=['GET', 'POST'])
-def addasset():
+@app.route('/interview/<interviewid>/addasset', methods=['GET', 'POST'])
+def addasset(interviewid):
     alert = None
-    if request.method == 'POST' and 'title' in request.form and 'date' in request.form and 'audio' in request.form and 'thumbnail' in request.form and 'script' in request.form:
-        title = request.form['title']
-        date = request.form['date']
-        audio = request.form['audio']
-        thumbnail = request.form['thumbnail']
-        script = request.form['script']
-        uid = session.get('userid')
+    if request.method == 'POST' and 'image' in request.form and 'hyperlink' in request.form and 'image' in request.form and 'text' in request.form:
+        timestamp = request.form['timestamp']
+        hyperlink = request.form['hyperlink']
+        image = request.form['image']
+        text = request.form['text']
+        fid = interviewid
 
         conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
         curr = conn.cursor()
-        curr.execute('SELECT * FROM interview WHERE title = %s', (title,))
-        interview = curr.fetchone()
+        curr.execute('SELECT * FROM assets WHERE timestamp = %s', (timestamp,))
+        asset = curr.fetchone()
 
-        if interview:
-            alert = 'That interview already exists, please try again'
-
-        elif not title or not date or not audio or not thumbnail or not script:
-            alert = 'Information missing in fields, please try again'
+        if asset:
+            curr.execute('UPDATE assets SET timestamp = %s, hyperlink = %s, image = %s, text = %s WHERE timestamp = %s', (timestamp, hyperlink, image, text, timestamp,))
+            conn.commit()
 
         else:
-            curr.execute('INSERT INTO interview (title, date, audio, thumbnail, script, uid) VALUES (%s, %s, %s, %s, %s, %s)', (title, date, audio, thumbnail, script, uid,))
+            curr.execute('INSERT INTO assets (fid, timestamp, hyperlink, image, text) VALUES (%s, %s, %s, %s, %s)', (fid, timestamp, hyperlink, image, text))
             conn.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('assets'))
 
         curr.close()
 

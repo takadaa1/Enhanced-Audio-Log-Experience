@@ -26,22 +26,20 @@
         <br>
 
         <div class="add-container">
-            <h1>Add an interview</h1>
+            <h1>Add Assets</h1>
             {% if alert %}
             <p class="error"><strong>Error:</strong> {{ alert }}
             {% endif %}
             <form action="" method="post">
-                <label for="title">Title:</label><br>
-                <input type="text" id="title" name="title" value="{{ request.form.title }}"><br>
-                <label for="title">Date(YYYY-MM-DD):</label><br>
-                <input type="text" id="date" name="date" value="{{ request.form.date }}"><br>
-                <label for="title">Audio(.ogg file):</label><br>
-                <input type="text" id="audio" name="audio" value="{{ request.form.audio }}"><br>
-                <label for="title">Thumbnail(image source url):</label><br>
-                <input type="text" id="thumbnail" name="thumbnail" value="{{ request.form.thumbnail }}"><br>
-                <label for="title">Script(url):</label><br>
-                <input type="text" id="script" name="script" value="{{ request.form.script }}"><br>
-                <button class="btn btn-default" type="submit" name="addbtn">Add information</button>
+                <label for="timestamp">Timestamp(HH:MM:SS):</label><br>
+                <input type="text" id="timestamp" name="timestamp" value="{{ request.form.timestamp }}"><br>
+                <label for="hyperlink">Hyperlink(url for referenced subject):</label><br>
+                <input type="text" id="hyperlink" name="hyperlink" value="{{ request.form.hyperlink }}"><br>
+                <label for="image">Image(url for image):</label><br>
+                <input type="text" id="image" name="image" value="{{ request.form.image }}"><br>
+                <label for="text">Text(description):</label><br>
+                <input type="text" id="text" name="text" value="{{ request.form.text }}"><br>
+                <button class="btn btn-default" type="submit" name="addbtn">Add Assets</button>
 
             </form>
         </div>
