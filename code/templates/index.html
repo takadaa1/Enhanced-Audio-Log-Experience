@@ -22,6 +22,9 @@
 		{% if session['loggedin'] %}
 		<a href="{{ url_for('logout') }} ">Logout</a>
 		{% endif %}
+    {% if session['loggedin'] and session['perm'] %}
+        <a href="{{ url_for('add') }} ">Add</a>
+    {% endif %}
             </div>
         </header>
         <br>

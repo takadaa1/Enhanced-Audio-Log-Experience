@@ -153,5 +153,37 @@ def delete():
 
     return redirect(url_for('index'))
 
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    alert = None
+    if request.method == 'POST' and 'title' in request.form and 'date' in request.form and 'audio' in request.form and 'thumbnail' in request.form and 'script' in request.form:
+        title = request.form['title']
+        date = request.form['date']
+        audio = request.form['audio']
+        thumbnail = request.form['thumbnail']
+        script = request.form['script']
+        uid = session.get('userid')
+
+        conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
+        curr = conn.cursor()
+        curr.execute('SELECT * FROM interview WHERE title = %s', (title,))
+        interview = curr.fetchone()
+
+        if interview:
+            alert = 'That interview already exists, please try again'
+
+        elif not title or not date or not audio or not thumbnail or not script:
+            alert = 'Information missing in fields, please try again'
+
+        else:
+            curr.execute('INSERT INTO interview (title, date, audio, thumbnail, script, uid) VALUES (%s, %s, %s, %s, %s, %s)', (title, date, audio, thumbnail, script, uid,))
+            conn.commit()
+            return redirect(url_for('index'))
+
+        curr.close()
+
+    return render_template('add.html', alert=alert)
+
+
 if __name__ == '__main__':
     app.run(debug = True)

@@ -27,7 +27,7 @@
         <br>
         <div class = "interview-container">
             <h2>Audio Interview: {{ title[0][1] }}</h2>
-            <h4>Date: {{ title[0][2] }}</h4>
+            <h3>Date of Interview: {{ title[0][2] }}</h3>
             <h3>Full List of Assets: <a href=" {{ url_for('assets', interviewid=title[0][0]) }} ", target="_blank", rel="noopener">Assets</a></h3>
             {% if session['loggedin'] and session['perm'] %}
                 <p>Admin Controls</p>
