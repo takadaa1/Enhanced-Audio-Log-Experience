@@ -73,7 +73,7 @@ def login():
         conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
         curr = conn.cursor()
         #curr.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password,))
-        curr.execute('SELECT * FROM users LEFT JOIN administrator ON users.userid=administrator.userid WHERE username = %s', (username,))
+        curr.execute('SELECT users.userid, username, password, permissions FROM users LEFT JOIN administrator ON users.userid=administrator.userid WHERE username = %s', (username,))
         account = curr.fetchone()
         curr.close()
 
@@ -137,6 +137,21 @@ def profile():
 
     return redirect(url_for('login'))
 
+@app.route('/delete-handler', methods=['GET','POST'])
+def delete():
+    if request.method == 'POST':
+        inp = request.form.get('del')
+        conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
+        curr = conn.cursor()
+        sql = ("DELETE FROM assets WHERE fid = %s")
+        curr.execute(sql, (inp,))
+        sql = ("DELETE FROM interview WHERE id = %s")
+        curr.execute(sql, (inp,))
+        conn.commit()
+        curr.close()
+
+
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug = True)

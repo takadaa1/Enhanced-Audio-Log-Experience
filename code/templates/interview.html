@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Maintained by: Jason Chen -->
+<!-- Maintained by: Jason Chen & Akira Takada -->
 <html lang="en">
     <head>
         <title>Enhanced Audio Log Experience</title>
@@ -27,7 +27,14 @@
         <br>
         <div class = "interview-container">
             <h2>Audio Interview: {{ title[0][1] }}</h2>
+            <h4>Date: {{ title[0][2] }}</h4>
             <h3>Full List of Assets: <a href=" {{ url_for('assets', interviewid=title[0][0]) }} ", target="_blank", rel="noopener">Assets</a></h3>
+            {% if session['loggedin'] and session['perm'] %}
+                <p>Admin Controls</p>
+                <form action="/delete-handler" method="POST">
+                    <button name="del" type="submit" onclick="return confirm('Are you sure?')" value="{{ title[0][0] }}">Delete</button>
+                </form>
+            {% endif %}
             <div id = "audio-container">
                 <audio controls id="audio"
                     preload="auto"
