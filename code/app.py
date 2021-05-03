@@ -39,10 +39,12 @@ def about():
 def interview(interviewid):
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT * FROM interview WHERE id = (%s); """, interviewid)
+    sql = ("SELECT * FROM interview WHERE id = %s")
+    curr.execute(sql, (interviewid,))
     title = curr.fetchall()
 
-    curr.execute("""SELECT * FROM assets WHERE fid = (%s); """, interviewid)
+    sql = ("SELECT * FROM assets WHERE fid = %s")
+    curr.execute(sql, (interviewid,))
     assets = curr.fetchall()
     curr.close()
 
@@ -53,10 +55,12 @@ def interview(interviewid):
 def assets(interviewid):
     conn = psycopg2.connect("dbname=" + db + " user=" + user + " password=" + passw)
     curr = conn.cursor()
-    curr.execute("""SELECT * FROM interview WHERE id = (%s); """, interviewid)
+    sql = ("SELECT * FROM interview WHERE id = %s")
+    curr.execute(sql, (interviewid,))
     title = curr.fetchall()
 
-    curr.execute("""SELECT * FROM assets WHERE fid = (%s) order by timestamp; """, interviewid)
+    sql = ("SELECT * FROM assets WHERE fid = %s order by timestamp")
+    curr.execute(sql, (interviewid,))
     assets = curr.fetchall()
     curr.close()
 
