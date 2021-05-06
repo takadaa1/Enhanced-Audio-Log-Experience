@@ -18,7 +18,7 @@ date DATE NOT NULL,
 audio TEXT NOT NULL,
 thumbnail TEXT NOT NULL,
 script TEXT,
-uID INT NOT NULL,
+uID INT,
 FOREIGN KEY (uID)
       REFERENCES users (userID)
 );
