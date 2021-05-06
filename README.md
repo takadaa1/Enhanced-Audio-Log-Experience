@@ -11,6 +11,11 @@ This is an enhanced version of the already existent audio library with the addit
 * [Jason Chen](https://github.com/jchen39)
 * [Luke Rogers](https://github.com/Luke328)
 
+## Repository Files
+* `doc` contains all related documents for each of the stages of our project
+* `code` contains the code for our project 
+* `scripts` contain all the sql scripts that are needed to populate the database
+
 ## Technologies & Installation
 The main technologies used for this include:
 * [PostgreSQL](https://www.postgresql.org/download/)
@@ -18,12 +23,10 @@ The main technologies used for this include:
 * [Python Flask Library](https://flask.palletsprojects.com/en/1.1.x/installation/)
 * [Python psycopg2 Library](https://www.psycopg.org/docs/install.html)
 
-## Database Setup
-
 ## Running the Application
 1. In the terminal, first navigate to the directory of the project
-2. Then navigate to the <mark>code</mark> directory
-3. Now run <mark>./run.sh</mark>
+2. Then navigate to the `code` directory
+3. Now run `./run.sh`
 4. On a web browser (Google Chrome or Firefox), navigate to http://127.0.0.1:5000/. You should be greeted with a home page that looks like the following:
 ![image](https://user-images.githubusercontent.com/43418785/117244308-cf8b9400-ae06-11eb-8705-df69f55f7b6b.png)
 
