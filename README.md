@@ -6,5 +6,10 @@ This is an enhanced version of the already existent audio library with the addit
 * Have reference files (imgs, hyperlinks, text) that appear on timestamps for users
 * Support for admin accounts/audio files owners to add/modify reference files
 
+## Collaborators
+* [Akira Takada](https://github.com/takadaa1)
+* [Jason Chen](https://github.com/jchen39)
+* [Luke Rogers](https://github.com/Luke328)
+
 ## Wiki
 Need any help? Check the wiki for further information [here](https://github.com/TCNJ-degoodj/stage-2b-group-8/wiki).
