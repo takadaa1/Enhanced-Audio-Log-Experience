@@ -22,8 +22,8 @@ The main technologies used for this include:
 
 ## Running the Application
 1. In the terminal, first navigate to the directory of the project
-2. Then navigate to the <Mark>code<Mark> directory
-3. Now run <Mark>./run.sh<Mark>
+2. Then navigate to the <mark>code</mark> directory
+3. Now run <mark>./run.sh</mark>
 4. On a web browser (Google Chrome or Firefox), navigate to http://127.0.0.1:5000/. You should be greeted with a home page that looks like the following:
 ![image](https://user-images.githubusercontent.com/43418785/117244308-cf8b9400-ae06-11eb-8705-df69f55f7b6b.png)
 
