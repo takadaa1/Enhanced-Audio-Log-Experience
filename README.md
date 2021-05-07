@@ -23,6 +23,15 @@ The main technologies used for this include:
 * [Python Flask Library](https://flask.palletsprojects.com/en/1.1.x/installation/)
 * [Python psycopg2 Library](https://www.psycopg.org/docs/install.html)
 
+## Database Setup
+Before you run the application, do the following:
+* In the terminal, run `createdb projfinal`
+* To access the database, enter `psql projfinal` into the terminal
+* Now that we are in the database, we populate it:
+  * First enter `\i DDL.sql` to create the tables for the database 
+  * Then enter `\i DML.sql` to populate our tables
+  * **Note: The script files must be in the same directory as the database for it to work**
+
 ## Running the Application
 1. In the terminal, first navigate to the directory of the project
 2. Then navigate to the `code` directory
